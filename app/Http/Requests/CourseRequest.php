@@ -9,7 +9,12 @@ class CourseRequest extends FormRequest
     public function rules()
     {
         return [
-
+            'title' => ['required', 'string'],
+            'description' => 'required',
+            'start_date' => ['date', 'required'],
+            'end_date' => ['date', 'required'],
+            'duration' => ['required', 'integer'],
+            'instructor_id' => ['integer', 'required']
         ];
     }
 
