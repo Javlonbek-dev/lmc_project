@@ -2,18 +2,21 @@
 
 namespace App\Models;
 
-use Database\Factories\LessonFactory;
+use Database\Factories\AssignmentFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Lesson extends Model
+class Assignment extends Model
 {
     use HasFactory;
 
-    protected static string $model_factory = LessonFactory::class;
-    protected $table = 'lessons';
+    use HasFactory;
+
+    protected static string $model_factory = AssignmentFactory::class;
+    protected $table = 'assignments';
     protected $guarded = [];
+
 
     public function course(): BelongsTo
     {
