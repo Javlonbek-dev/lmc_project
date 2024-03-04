@@ -30,4 +30,9 @@ class Course extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function enrollment(): HasMany
+    {
+        return $this->hasMany(Enrollment::class);
+    }
 }
