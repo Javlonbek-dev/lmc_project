@@ -16,6 +16,7 @@ class CourseFactory extends Factory
             'title' => $this->faker->text(),
             'description' => $this->faker->text(),
             'start_date' => Carbon::now(),
+            'instructor_id' => $this->faker->numberBetween(1, 3,),
             'end_date' => Carbon::now(),
             'duration' => $this->faker->randomNumber(),
             'created_at' => Carbon::now(),

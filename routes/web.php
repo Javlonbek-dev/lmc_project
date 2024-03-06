@@ -23,7 +23,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::apiResource('course', CourseController::class)->names('course');
 Route::apiResource('lesson', LessonController::class)->names('lesson');
 Route::apiResource('assignment', AssignmentController::class)->names('assignment');
 Route::apiResource('grade', GradeController::class)->names('grade');
