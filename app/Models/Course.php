@@ -14,7 +14,14 @@ class Course extends Model
 
     protected static string $model_factory = CourseFactory::class;
     protected $table = 'courses';
-    protected $guarded = [];
+    protected $fillable = [
+        'title',
+        'description',
+        'start_date',
+        'end_date',
+        'duration',
+        'instructor_id'
+    ];
 
     public function assignments(): HasMany
     {
