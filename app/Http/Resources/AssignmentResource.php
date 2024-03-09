@@ -16,7 +16,11 @@ class AssignmentResource extends JsonResource
             'description' => $this->description,
             'due_date' => $this->due_date,
             'max_score' => $this->max_score,
-            'course_id' => $this->course_id,
+            'course' => [
+                'id' => $this->course->id,
+                'title' => $this->course->title,
+                'description' => $this->course->description,
+            ],
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

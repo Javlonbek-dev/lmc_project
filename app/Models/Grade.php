@@ -12,17 +12,17 @@ class Grade extends Model
 
 
     protected static string $model_factory = GradeFactory::class;
-    protected $table = 'grade';
+    protected $table = 'grades';
     protected $guarded = [];
 
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'student_id');
     }
 
     public function assignment()
     {
-        return $this->belongsTo(Assignment::class);
+        return $this->belongsTo(Assignment::class, 'assignment_id');
     }
 }
