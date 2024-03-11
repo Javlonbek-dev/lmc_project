@@ -9,10 +9,10 @@ class QuizRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'student_id' => 'required|exists:users,id',
-            'assignment_id' => 'required|exists:assignments,id',
-            'grade_value' => 'required|numeric|min:0|max:100',
-            'graded_at' => 'nullable|date',
+            'course_id' => 'required',
+            'title' => ['string', 'required'],
+            'description' => ['string', 'required'],
+            'duration'=>['integer','required']
         ];
     }
 
