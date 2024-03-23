@@ -10,7 +10,8 @@ class EnrollmentController extends Controller
 {
     public function index()
     {
-        return EnrollmentResource::collection(Enrollment::all());
+        $enrollments=EnrollmentResource::collection(Enrollment::all());
+        return view('enrollment.index', ['enrollments'=>$enrollments]);
     }
 
     public function store(EnrollmentRequest $request)

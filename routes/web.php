@@ -21,5 +21,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+
 });
+Route::get('assignment.index',[AssignmentController::class, 'index'])->name('assignment.index');
+Route::get('enrollment.index',[EnrollmentController::class, 'index'])->name('enrollment.index');
+Route::get('lesson.index',[LessonController::class, 'index'])->name('lesson.index');
+Route::get('grade.index',[GradeController::class, 'index'])->name('grade.index');
+Route::get('quiz.index',[QuizController::class, 'index'])->name('quiz.index');
 

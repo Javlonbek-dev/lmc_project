@@ -12,8 +12,8 @@ class EnrollmentResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'user'=>[
-                'name'=>$this->name
+            'users'=>[
+                'name'=>'Jalol'
             ],
             'course' => [
                 'id'=>$this->id,

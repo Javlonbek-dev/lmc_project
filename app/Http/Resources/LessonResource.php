@@ -12,7 +12,10 @@ class LessonResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'course_id' => $this->course_id,
+            'course' =>[
+                'id'=>$this->id,
+                'title'=>$this->title
+            ],
             'title' => $this->title,
             'description' => $this->description,
             'content' => $this->content,

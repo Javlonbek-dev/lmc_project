@@ -10,7 +10,8 @@ class LessonController extends Controller
 {
     public function index()
     {
-        return LessonResource::collection(Lesson::all());
+        $lessons=  LessonResource::collection(Lesson::all());
+        return view('lesson.index', ['lessons'=>$lessons]);
     }
 
     public function store(LessonRequest $request)

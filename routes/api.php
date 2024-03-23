@@ -25,10 +25,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('course', CourseController::class)->names('course');
-Route::apiResource('lesson', LessonController::class)->names('lesson');
-Route::apiResource('assignment', AssignmentController::class)->names('assignment');
-Route::apiResource('grade', GradeController::class)->names('grade');
-Route::apiResource('enrollment', EnrollmentController::class)->names('enrollment');
-Route::apiResource('quiz', QuizController::class)->names('quiz');
+//Route::apiResource('course', CourseController::class)->names('course');
+//Route::apiResource('lesson', LessonController::class)->names('lesson');
+//Route::apiResource('assignment', AssignmentController::class)->names('assignment');
+//Route::apiResource('grade', GradeController::class)->names('grade');
+//Route::apiResource('enrollment', EnrollmentController::class)->names('enrollment');
+//Route::apiResource('quiz', QuizController::class)->names('quiz');
 
