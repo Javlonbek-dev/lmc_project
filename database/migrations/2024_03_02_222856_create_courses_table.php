@@ -11,8 +11,8 @@ return new class extends Migration {
             $table->id();
             $table->string('title');
             $table->string('description');
-            $table->time('start_date');
-            $table->time('end_date');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->integer('duration');
             $table->integer('instructor_id');
             $table->timestamps();
