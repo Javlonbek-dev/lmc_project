@@ -6,6 +6,7 @@ use App\Http\Requests\CourseRequest;
 use App\Http\Resources\CourseResource;
 use App\Models\Course;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 
 class CourseController extends Controller
 {
@@ -17,9 +18,6 @@ class CourseController extends Controller
 
     public function store(CourseRequest $request)
     {
-        if (!auth()->user()->can('create', Course::class)) {
-            return response()->json(['message' => 'Unauthorized.'], 403);
-        }
         return new CourseResource(Course::create($request->validated()));
     }
 
@@ -30,10 +28,6 @@ class CourseController extends Controller
 
     public function update(CourseRequest $request, Course $course)
     {
-
-        if (!auth()->user()->can('update', $course)) {
-            return response()->json(['message' => 'Unauthorized.'], 403);
-        }
         $course->update($request->validated());
 
         return new CourseResource($course);

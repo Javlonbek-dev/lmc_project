@@ -31,7 +31,7 @@ class CoursePolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create_course');
+        return $user->hasRole('instructor');
     }
 
     /**

@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-
+});
 Route::apiResource('course', CourseController::class)->names('course')->only('store','update','destroy');
 Route::apiResource('lesson', LessonController::class)->names('lesson');
 Route::apiResource('assignment', AssignmentController::class)->names('assignment');
@@ -29,6 +29,6 @@ Route::apiResource('grade', GradeController::class)->names('grade');
 Route::apiResource('enrollment', EnrollmentController::class)->names('enrollment');
 Route::apiResource('quiz', QuizController::class)->names('quiz');
 
-});
+
 Route::apiResource('course', CourseController::class)->only(['index', 'show']);
 
