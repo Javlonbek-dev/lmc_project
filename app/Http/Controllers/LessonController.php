@@ -10,8 +10,8 @@ class LessonController extends Controller
 {
     public function index()
     {
-        $lessons=  LessonResource::collection(Lesson::all());
-        return view('lesson.index', ['lessons'=>$lessons]);
+        $lessons = LessonResource::collection(Lesson::all());
+        return $lessons;
     }
 
     public function store(LessonRequest $request)
@@ -35,6 +35,6 @@ class LessonController extends Controller
     {
         $lesson->delete();
 
-        return response()->json();
+        return response()->noContent();
     }
 }

@@ -10,7 +10,7 @@ class LessonRequest extends FormRequest
     {
         return [
             'course_id' => 'required',
-            'title' => ['string', 'required'],
+            'title' => 'string|required',
             'description' => ['string', 'required'],
             'content' => ['string', 'required'],
             'order' => ['required', 'integer']
