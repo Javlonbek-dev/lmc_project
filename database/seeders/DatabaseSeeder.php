@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Enums\UserEnum;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,6 +18,11 @@ class DatabaseSeeder extends Seeder
          \App\Models\User::factory()->create([
              'name' => 'Test User',
              'email' => 'test@example.com',
+             'role'=>UserEnum::Instructor,
          ]);
+
+        $this->call([
+           RoleSeeder::class,
+        ]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\UserEnum;
 use Database\Factories\GradeFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -18,7 +19,7 @@ class Grade extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'student_id');
+        return $this->belongsToMany(User::class, 'course_student', 'course_id', 'student_id')->where('role', UserEnum::Student);
     }
 
     public function assignment()
