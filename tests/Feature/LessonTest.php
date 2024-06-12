@@ -17,7 +17,8 @@ class LessonTest extends TestCase
         'description',
         'content',
         'course' =>
-            ['id',
+            [
+                'id',
                 'title'
             ],
         'order',
