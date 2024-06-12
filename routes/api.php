@@ -31,4 +31,4 @@ Route::apiResource('quiz', QuizController::class)->names('quiz');
 
 
 Route::apiResource('course', CourseController::class)->only(['index', 'show']);
-
+Route::apiResource('lesson', LessonController::class)->names('lesson');
