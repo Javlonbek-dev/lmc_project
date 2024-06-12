@@ -2,9 +2,10 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CourseResource\Pages;
-use App\Filament\Resources\CourseResource\RelationManagers;
-use App\Models\Course;
+use App\Enums\UserEnum;
+use App\Filament\Resources\UserResource\Pages;
+use App\Filament\Resources\UserResource\RelationManagers;
+use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,9 +14,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class CourseResource extends Resource
+class UserResource extends Resource
 {
-    protected static ?string $model = Course::class;
+    protected static ?string $model = User::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -23,23 +24,28 @@ class CourseResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
+                Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('description')
+                Forms\Components\TextInput::make('email')
+                    ->email()
                     ->required()
                     ->maxLength(255),
-                Forms\Components\DateTimePicker::make('start_date')
-                    ->required(),
-                Forms\Components\DateTimePicker::make('end_date')
-                    ->required(),
-                Forms\Components\TextInput::make('duration')
+                Forms\Components\Select::make('roles')
+                    ->relationship('roles', 'name')
+                    ->enum(UserEnum::class)
+                    ->options([
+                        'Student' => 'Student',
+
+                    ])
+                    ->multiple()
+                    ->preload()
+                    ->searchable(),
+                Forms\Components\DateTimePicker::make('email_verified_at'),
+                Forms\Components\TextInput::make('password')
+                    ->password()
                     ->required()
-                    ->numeric(),
-                Forms\Components\Select::make('instructor_id')
-                    ->label('Instructor')
-                    ->relationship('instructor', 'name')
-                    ->required(),
+                    ->maxLength(255),
             ]);
     }
 
@@ -47,17 +53,15 @@ class CourseResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title')
+                Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('description')
+                Tables\Columns\TextColumn::make('email')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('start_date'),
-                Tables\Columns\TextColumn::make('end_date'),
-                Tables\Columns\TextColumn::make('duration')
+                Tables\Columns\TextColumn::make('roles.name')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('user.name')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('email_verified_at')
+                    ->dateTime()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -91,9 +95,9 @@ class CourseResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCourses::route('/'),
-            'create' => Pages\CreateCourse::route('/create'),
-            'edit' => Pages\EditCourse::route('/{record}/edit'),
+            'index' => Pages\ListUsers::route('/'),
+            'create' => Pages\CreateUser::route('/create'),
+            'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
     }
 }
