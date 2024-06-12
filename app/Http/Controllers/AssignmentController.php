@@ -10,8 +10,7 @@ class AssignmentController extends Controller
 {
     public function index()
     {
-        $assignments = AssignmentResource::collection(Assignment::all());
-        return view('assignment.index', ['assignments' => $assignments]);
+        return AssignmentResource::collection(Assignment::all());
     }
 
     public function store(AssignmentRequest $request)
@@ -35,6 +34,6 @@ class AssignmentController extends Controller
     {
         $assignment->delete();
 
-        return response()->json();
+        return response()->noContent();
     }
 }
