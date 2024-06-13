@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Models\Course;
 use App\Models\Enrollment;
-use App\Models\Lesson;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Response;
@@ -99,7 +98,7 @@ class EnrollmentTest extends TestCase
         $enrollment = [
             'student_id' => $user->id,
             'course_id' => $course->id,
-            'enrollment_date' =>Carbon::now()
+            'enrollment_date' => Carbon::now(),
         ];
 
         $this->postJson('api/enrollment', $enrollment)
