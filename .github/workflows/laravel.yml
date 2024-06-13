@@ -1,8 +1,7 @@
-
 name: Check & fix styling
 
 on:
-  push: # (or pull requests)
+  push:
     paths:
       - '.github/workflows/**'
       - '**.php'
@@ -30,7 +29,10 @@ jobs:
         env:
           COMPOSER_TOKEN: ${{ secrets.TOKEN }}
 
-      - name: Install Dependencies 🔧
+      - name: Update Composer Dependencies 🔧
+        run: composer update -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      - name: Install Composer Dependencies 🔧
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
       - name: Run Pint
