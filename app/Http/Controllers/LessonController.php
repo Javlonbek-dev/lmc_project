@@ -11,6 +11,7 @@ class LessonController extends Controller
     public function index()
     {
         $lessons = LessonResource::collection(Lesson::all());
+
         return $lessons;
     }
 

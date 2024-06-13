@@ -16,11 +16,10 @@ class LessonTest extends TestCase
         'title',
         'description',
         'content',
-        'course' =>
-            [
-                'id',
-                'title'
-            ],
+        'course' => [
+            'id',
+            'title',
+        ],
         'order',
         'created_at',
         'updated_at',
@@ -34,8 +33,8 @@ class LessonTest extends TestCase
             ->assertOk()
             ->assertJsonStructure([
                 'data' => [
-                    '*' => $this->apiResponseFieldsShow
-                ]
+                    '*' => $this->apiResponseFieldsShow,
+                ],
             ]);
     }
 
@@ -47,28 +46,28 @@ class LessonTest extends TestCase
             ->assertJsonCount(100, 'data.*')
             ->assertJsonStructure([
                 'data' => [
-                    '*' => $this->apiResponseFieldsShow
-                ]
+                    '*' => $this->apiResponseFieldsShow,
+                ],
             ]);
     }
 
     public function testShowLesson()
     {
         Lesson::factory()->create([
-            'id' => 1
+            'id' => 1,
         ]);
 
         $this->getJson('api/lesson/1')
             ->assertOk()
             ->assertJsonStructure([
-                'data' => $this->apiResponseFieldsShow
+                'data' => $this->apiResponseFieldsShow,
             ]);
     }
 
     public function testDeleteLesson()
     {
         Lesson::factory()->create([
-            'id' => 1
+            'id' => 1,
         ]);
 
         $this->deleteJson('api/lesson/1')
@@ -86,7 +85,7 @@ class LessonTest extends TestCase
                     'title',
                     'description',
                     'content',
-                    'order'
+                    'order',
                 ],
             ]);
     }
@@ -98,13 +97,13 @@ class LessonTest extends TestCase
             'description' => 'test',
             'content' => 'test',
             'course_id' => 1,
-            'order' => 1
+            'order' => 1,
         ];
 
         $this->postJson('api/lesson', $lesson)
             ->assertCreated()
             ->assertJsonStructure([
-                'data' => $this->apiResponseFieldsShow
+                'data' => $this->apiResponseFieldsShow,
             ]);
     }
 

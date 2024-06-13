@@ -13,7 +13,7 @@ class LessonRequest extends FormRequest
             'title' => 'string|required',
             'description' => ['string', 'required'],
             'content' => ['string', 'required'],
-            'order' => ['required', 'integer']
+            'order' => ['required', 'integer'],
         ];
     }
 

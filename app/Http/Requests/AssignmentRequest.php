@@ -13,7 +13,7 @@ class AssignmentRequest extends FormRequest
             'description' => ['required', 'string'],
             'due_date' => ['required', 'date'],
             'max_score' => ['required', 'integer'],
-            'course_id' => ['required']
+            'course_id' => ['required'],
         ];
     }
 

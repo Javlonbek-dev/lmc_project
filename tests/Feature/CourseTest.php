@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Enums\UserEnum;
 use App\Models\Course;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -12,7 +11,6 @@ use Tests\TestCase;
 
 class CourseTest extends TestCase
 {
-
     use RefreshDatabase;
 
     public function test_can_show_all_courses()
@@ -22,8 +20,7 @@ class CourseTest extends TestCase
         $this->json('GET', 'api/course')
             ->assertStatus(200)
             ->assertJsonStructure([
-                '*' =>
-                    ['id', 'title', 'description', 'start_date', 'end_date', 'duration', 'instructor_id', 'created_at', 'updated_at']
+                '*' => ['id', 'title', 'description', 'start_date', 'end_date', 'duration', 'instructor_id', 'created_at', 'updated_at'],
             ]);
     }
 
@@ -37,7 +34,7 @@ class CourseTest extends TestCase
             ->assertJsonStructure([
                 'data' => [
                     'id', 'title', 'description', 'start_date', 'end_date',
-                    'duration', 'instructor_id', 'created_at', 'updated_at'
+                    'duration', 'instructor_id', 'created_at', 'updated_at',
                 ],
             ])
             ->assertJsonFragment([
@@ -63,17 +60,17 @@ class CourseTest extends TestCase
         $this->assertDatabaseHas('courses', $params);
     }
 
-//    public function testCourseCreateUnauthorized()
-//    {
-//        $instructor = User::factory()->create(['email_verified_at' => now()]);
-//
-//        Sanctum::actingAs($instructor);
-//        $this->json('POST', '/api/course/', $this->validParams())
-//            ->assertForbidden()
-//            ->assertJson([
-//                'message' => 'Unauthorized.'
-//            ]);
-//    }
+    //    public function testCourseCreateUnauthorized()
+    //    {
+    //        $instructor = User::factory()->create(['email_verified_at' => now()]);
+    //
+    //        Sanctum::actingAs($instructor);
+    //        $this->json('POST', '/api/course/', $this->validParams())
+    //            ->assertForbidden()
+    //            ->assertJson([
+    //                'message' => 'Unauthorized.'
+    //            ]);
+    //    }
 
     public function test_can_update_course()
     {
@@ -82,7 +79,7 @@ class CourseTest extends TestCase
         Sanctum::actingAs($instructor);
         $course = Course::factory()->create();
         $params = $this->validParams();
-        $response=$this->json('PATCH', "/api/course/{$course->id}", $params);
+        $response = $this->json('PATCH', "/api/course/{$course->id}", $params);
         $response->assertOk();
 
         $course->refresh();
@@ -92,19 +89,19 @@ class CourseTest extends TestCase
         $this->assertEquals($course->description, $params['description']);
     }
 
-//    public function testCourseUpdateUnauthorized()
-//    {
-//        $instructor = User::factory()->create(['email_verified_at' => now()]);
-//        Sanctum::actingAs($instructor);
-//
-//        $course = Course::factory()->create();
-//
-//        $this->json('PATCH', "/api/course/{$course->id}", $this->validParams())
-//            ->assertForbidden()
-//            ->assertJson([
-//                'message' => 'Unauthorized.'
-//            ]);
-//    }
+    //    public function testCourseUpdateUnauthorized()
+    //    {
+    //        $instructor = User::factory()->create(['email_verified_at' => now()]);
+    //        Sanctum::actingAs($instructor);
+    //
+    //        $course = Course::factory()->create();
+    //
+    //        $this->json('PATCH', "/api/course/{$course->id}", $this->validParams())
+    //            ->assertForbidden()
+    //            ->assertJson([
+    //                'message' => 'Unauthorized.'
+    //            ]);
+    //    }
     public function test_can_delete_course()
     {
         $instructor = User::factory()->create(['email_verified_at' => now()]);
@@ -116,7 +113,7 @@ class CourseTest extends TestCase
         $this->json('DELETE', "/api/course/{$course->id}")
             ->assertNoContent();
 
-        $this->assertDatabaseMissing('courses',['id' => $course->id]);
+        $this->assertDatabaseMissing('courses', ['id' => $course->id]);
     }
 
     public function testCourseDeleteUnauthorized()
@@ -127,7 +124,7 @@ class CourseTest extends TestCase
         $this->json('DELETE', "/api/course/{$course->id}")
             ->assertStatus(403)
             ->assertJson([
-                'message' => 'This action is unauthorized.'
+                'message' => 'This action is unauthorized.',
             ]);
 
         $this->assertDatabaseHas('courses', $course->toArray());

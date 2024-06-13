@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum UserEnum:int
+enum UserEnum: int
 {
     case Admin = 10;
     case Student = 20;

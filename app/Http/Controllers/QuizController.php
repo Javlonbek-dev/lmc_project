@@ -11,6 +11,7 @@ class QuizController extends Controller
     public function index()
     {
         $quizzes = QuizResource::collection(Quiz::all());
+
         return view('quiz.index', ['quizzes' => $quizzes]);
     }
 

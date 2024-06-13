@@ -12,7 +12,9 @@ class Lesson extends Model
     use HasFactory;
 
     protected static string $model_factory = LessonFactory::class;
+
     protected $table = 'lessons';
+
     protected $guarded = [];
 
     public function course(): BelongsTo
