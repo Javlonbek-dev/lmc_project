@@ -6,13 +6,13 @@ use App\Http\Requests\CourseRequest;
 use App\Http\Resources\CourseResource;
 use App\Models\Course;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Log;
 
 class CourseController extends Controller
 {
     public function index()
     {
         $courses = Course::all();
+
         return response()->json($courses);
     }
 

@@ -11,11 +11,11 @@ class Grade extends Model
 {
     use HasFactory;
 
-
     protected static string $model_factory = GradeFactory::class;
-    protected $table = 'grades';
-    protected $guarded = [];
 
+    protected $table = 'grades';
+
+    protected $guarded = [];
 
     public function user()
     {

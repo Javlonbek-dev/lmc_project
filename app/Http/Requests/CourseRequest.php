@@ -11,10 +11,10 @@ class CourseRequest extends FormRequest
         return [
             'title' => ['required', 'string'],
             'description' => 'required',
-            'start_date' => [ 'required'],
+            'start_date' => ['required'],
             'end_date' => ['required'],
             'duration' => ['required', 'integer'],
-            'instructor_id' => ['integer', 'required']
+            'instructor_id' => ['integer', 'required'],
         ];
     }
 

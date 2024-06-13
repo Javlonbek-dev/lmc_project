@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\User;
 use App\Models\Course;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CoursePolicy
@@ -105,6 +105,4 @@ class CoursePolicy
     {
         return $user->can('reorder_course');
     }
-
-
 }

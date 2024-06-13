@@ -11,13 +11,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Assignment extends Model
 {
     use HasFactory;
-
     use HasFactory;
 
     protected static string $model_factory = AssignmentFactory::class;
-    protected $table = 'assignments';
-    protected $guarded = [];
 
+    protected $table = 'assignments';
+
+    protected $guarded = [];
 
     public function course(): BelongsTo
     {

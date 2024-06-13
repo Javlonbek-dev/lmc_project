@@ -16,8 +16,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements FilamentUser
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles, HasPanelShield;
-
+    use HasApiTokens, HasFactory, HasPanelShield, HasRoles, Notifiable;
 
     protected $fillable = [
         'name',
@@ -25,22 +24,22 @@ class User extends Authenticatable implements FilamentUser
         'password',
     ];
 
-
     protected $hidden = [
         'password',
         'remember_token',
     ];
+
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
-        'role' => UserEnum::class
+        'role' => UserEnum::class,
     ];
 
     public function role(): Attribute
     {
         return Attribute::make(
-            get: fn($value) => UserEnum::from($value),
-            set: fn(UserEnum $value) => $value->value,
+            get: fn ($value) => UserEnum::from($value),
+            set: fn (UserEnum $value) => $value->value,
         );
     }
 

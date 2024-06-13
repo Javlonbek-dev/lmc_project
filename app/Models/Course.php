@@ -14,14 +14,16 @@ class Course extends Model
     use HasFactory;
 
     protected static string $model_factory = CourseFactory::class;
+
     protected $table = 'courses';
+
     protected $fillable = [
         'title',
         'description',
         'start_date',
         'end_date',
         'duration',
-        'instructor_id'
+        'instructor_id',
     ];
 
     public function assignments(): HasMany
@@ -34,10 +36,10 @@ class Course extends Model
         return $this->hasMany(Lesson::class);
     }
 
-//    public function user(): BelongsTo
-//    {
-//        return $this->belongsTo(User::class, 'instructor_id');
-//    }
+    //    public function user(): BelongsTo
+    //    {
+    //        return $this->belongsTo(User::class, 'instructor_id');
+    //    }
 
     public function instructor()
     {
@@ -48,6 +50,7 @@ class Course extends Model
     {
         return $this->belongsToMany(User::class, 'course_student', 'course_id', 'student_id')->where('role', UserEnum::Student);
     }
+
     public function enrollments(): HasMany
     {
         return $this->hasMany(Enrollment::class);

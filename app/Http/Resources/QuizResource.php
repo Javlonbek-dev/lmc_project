@@ -16,10 +16,10 @@ class QuizResource extends JsonResource
             'duration' => $this->duration,
             'course' => [
                 'id' => $this->id,
-                'title' => $this->title
+                'title' => $this->title,
             ],
             'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at
+            'updated_at' => $this->updated_at,
         ];
     }
 }

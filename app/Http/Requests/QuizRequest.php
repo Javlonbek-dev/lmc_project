@@ -12,7 +12,7 @@ class QuizRequest extends FormRequest
             'course_id' => 'required',
             'title' => ['string', 'required'],
             'description' => ['string', 'required'],
-            'duration'=>['integer','required']
+            'duration' => ['integer', 'required'],
         ];
     }
 

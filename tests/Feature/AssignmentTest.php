@@ -24,7 +24,7 @@ class AssignmentTest extends TestCase
             'description',
         ],
         'created_at',
-        'updated_at'
+        'updated_at',
 
     ];
 
@@ -35,8 +35,8 @@ class AssignmentTest extends TestCase
         $response->assertOk();
         $response->assertJsonStructure([
             'data' => [
-                '*' => $this->apiResponceFields
-            ]
+                '*' => $this->apiResponceFields,
+            ],
         ]);
     }
 
@@ -46,23 +46,22 @@ class AssignmentTest extends TestCase
         $response = $this->get('/api/assignment');
         $response->assertJsonCount(100, 'data.*');
         $response->assertJsonStructure([
-            'data' =>
-                [
-                    '*' => $this->apiResponceFields
-                ]
+            'data' => [
+                '*' => $this->apiResponceFields,
+            ],
         ]);
     }
 
     public function testShowAssigment()
     {
         Assignment::factory()->create([
-            'id' => 1
+            'id' => 1,
         ]);
 
         $response = $this->get('/api/assignment/1');
         $response->assertOk();
         $response->assertJsonStructure([
-            'data' => $this->apiResponceFields
+            'data' => $this->apiResponceFields,
         ]);
     }
 
@@ -77,8 +76,8 @@ class AssignmentTest extends TestCase
                     'description',
                     'due_date',
                     'max_score',
-                    'course_id'
-                ]
+                    'course_id',
+                ],
             ]);
     }
 
@@ -90,13 +89,13 @@ class AssignmentTest extends TestCase
             'description' => 'Test Description',
             'due_date' => Carbon::now(),
             'max_score' => 354,
-            'course_id' => $course->id
+            'course_id' => $course->id,
         ];
 
         $this->postJson('/api/assignment', $params)
             ->assertCreated()
             ->assertJsonStructure([
-                'data' => $this->apiResponceFields
+                'data' => $this->apiResponceFields,
             ]);
     }
 
@@ -132,7 +131,7 @@ class AssignmentTest extends TestCase
     public function testDeleteAssignment()
     {
         Assignment::factory()->create([
-            'id' => 1
+            'id' => 1,
         ]);
 
         $this->deleteJson('/api/assignment/1')

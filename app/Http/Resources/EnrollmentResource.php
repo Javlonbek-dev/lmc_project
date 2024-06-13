@@ -12,13 +12,13 @@ class EnrollmentResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'users'=>[
-                'name'=>'Jalol'
+            'users' => [
+                'name' => 'Jalol',
             ],
             'course' => [
-                'id'=>$this->id,
-                'title'=>$this->title,
-                'description'=>$this->description
+                'id' => $this->id,
+                'title' => $this->title,
+                'description' => $this->description,
             ],
             'enrollment_date' => $this->enrollment_date,
             'created_at' => $this->created_at,

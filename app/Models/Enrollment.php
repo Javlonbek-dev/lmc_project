@@ -12,7 +12,9 @@ class Enrollment extends Model
     use HasFactory;
 
     protected static string $model_factory = EnrollmentFactory::class;
+
     protected $table = 'enrollments';
+
     protected $guarded = [];
 
     public function user(): BelongsTo

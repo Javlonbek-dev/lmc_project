@@ -19,10 +19,10 @@ class GradeTest extends TestCase
         'assignment' => [
             'id',
             'title',
-            'description'
+            'description',
         ],
         'grade_value',
-        'graded_at'
+        'graded_at',
     ];
 
     public function testListGrade()
@@ -34,7 +34,7 @@ class GradeTest extends TestCase
             ->assertJsonStructure([
                 'data' => [
                     '*' => $this->apiResponceFields,
-                ]
+                ],
             ]);
     }
 
@@ -46,28 +46,28 @@ class GradeTest extends TestCase
             ->assertJsonCount(100, 'data.*')
             ->assertJsonStructure([
                 'data' => [
-                    '*' => $this->apiResponceFields
-                ]
+                    '*' => $this->apiResponceFields,
+                ],
             ]);
     }
 
     public function testShowGrade()
     {
         Grade::factory()->create([
-            'id' => 1
+            'id' => 1,
         ]);
 
         $this->getJson('api/grade/1')
             ->assertOk()
             ->assertJsonStructure([
-                'data' => $this->apiResponceFields
+                'data' => $this->apiResponceFields,
             ]);
     }
 
     public function testDeleteGrade()
     {
         Grade::factory()->create([
-            'id' => 1
+            'id' => 1,
         ]);
 
         $this->deleteJson('api/grade/1')
@@ -100,7 +100,7 @@ class GradeTest extends TestCase
         $this->postJson('api/grade', $grade)
             ->assertCreated()
             ->assertJsonStructure([
-                'data' => $this->apiResponceFields
+                'data' => $this->apiResponceFields,
             ]);
     }
 

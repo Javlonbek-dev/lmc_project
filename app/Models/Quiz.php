@@ -11,14 +11,14 @@ class Quiz extends Model
 {
     use HasFactory;
 
-
     protected static string $model_factory = QuizFactory::class;
+
     protected $table = 'quizzes';
+
     protected $guarded = [];
 
-    public function course():BelongsTo
+    public function course(): BelongsTo
     {
         return $this->belongsTo(Course::class);
     }
-
 }

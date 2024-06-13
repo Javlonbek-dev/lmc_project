@@ -30,4 +30,3 @@ Route::get('/', function () {
 //Route::get('quiz.index',[QuizController::class, 'index'])->name('quiz.index');
 //Route::apiResource('course', CourseController::class)->names('course');
 //
-

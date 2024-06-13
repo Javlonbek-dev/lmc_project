@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     public function up(): void
     {
         Schema::create('grades', function (Blueprint $table) {
@@ -14,7 +15,6 @@ return new class extends Migration {
             $table->float('grade_value');
             $table->date('graded_at')->nullable();
             $table->timestamps();
-
 
             $table->foreign('student_id')->references('id')->on('users');
             $table->foreign('assignment_id')->references('id')->on('assignments');
