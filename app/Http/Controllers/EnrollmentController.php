@@ -10,8 +10,8 @@ class EnrollmentController extends Controller
 {
     public function index()
     {
-        $enrollments=EnrollmentResource::collection(Enrollment::all());
-        return view('enrollment.index', ['enrollments'=>$enrollments]);
+        return EnrollmentResource::collection(Enrollment::all());
+
     }
 
     public function store(EnrollmentRequest $request)
@@ -35,6 +35,6 @@ class EnrollmentController extends Controller
     {
         $enrollment->delete();
 
-        return response()->json();
+        return response()->noContent();
     }
 }
