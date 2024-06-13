@@ -3,9 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Assignment;
-use App\Models\Course;
 use App\Models\Grade;
-use App\Models\Lesson;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Response;
@@ -108,7 +106,7 @@ class GradeTest extends TestCase
 
     public function testUpdateGrade()
     {
-        $grades= Grade::factory()->create();
+        $grades = Grade::factory()->create();
 
         $grade = [
             'student_id' => User::factory()->create()->id,

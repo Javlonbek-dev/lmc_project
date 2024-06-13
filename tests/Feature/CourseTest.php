@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Enums\UserEnum;
 use App\Models\Course;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -82,7 +81,7 @@ class CourseTest extends TestCase
         Sanctum::actingAs($instructor);
         $course = Course::factory()->create();
         $params = $this->validParams();
-        $response=$this->json('PATCH', "/api/course/{$course->id}", $params);
+        $response = $this->json('PATCH', "/api/course/{$course->id}", $params);
         $response->assertOk();
 
         $course->refresh();
@@ -116,7 +115,7 @@ class CourseTest extends TestCase
         $this->json('DELETE', "/api/course/{$course->id}")
             ->assertNoContent();
 
-        $this->assertDatabaseMissing('courses',['id' => $course->id]);
+        $this->assertDatabaseMissing('courses', ['id' => $course->id]);
     }
 
     public function testCourseDeleteUnauthorized()

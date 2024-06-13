@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Models\Course;
 use App\Models\Enrollment;
-use App\Models\Lesson;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Response;
@@ -95,12 +94,12 @@ class EnrollmentTest extends TestCase
 
     public function testStoreEnrollment()
     {
-        $user=User::factory()->create();
-        $course= Course::factory()->create();
+        $user = User::factory()->create();
+        $course = Course::factory()->create();
         $enrollment = [
-            'student_id' =>$user->id,
+            'student_id' => $user->id,
             'course_id' => $course->id,
-            'enrollment_date' =>Carbon::now()
+            'enrollment_date' => Carbon::now()
         ];
 
         $this->postJson('api/enrollment', $enrollment)
@@ -113,11 +112,11 @@ class EnrollmentTest extends TestCase
     public function testUpdateLesson()
     {
         $enrollment = Enrollment::factory()->create();
-        $user=User::factory()->create();
+        $user = User::factory()->create();
         $enrollments = [
-            'enrollment_date' =>fake()->date(),
+            'enrollment_date' => fake()->date(),
             'course_id' => Course::factory()->create()->id,
-            'student_id' =>$user->id,
+            'student_id' => $user->id,
         ];
 
         $response = $this->json('PUT', "api/enrollment/{$enrollment->id}", $enrollments);
