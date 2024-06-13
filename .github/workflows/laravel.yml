@@ -38,7 +38,23 @@ jobs:
       - name: Run Pint
         run: vendor/bin/pint
 
+      - name: Set up Git user
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
       - name: Commit changes
+        id: git_commit
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Fixed code style
+          commit_user_name: github-actions[bot]
+          commit_user_email: github-actions[bot]@users.noreply.github.com
+          branch: ${{ github.head_ref }}
+
+      - name: Check if commit was made
+        run: |
+          if [ $(git log -1 --pretty=%B) != "Fixed code style" ]; then
+            echo "No changes to commit"
+            exit 0
+          fi
