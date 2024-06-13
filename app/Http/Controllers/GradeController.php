@@ -10,8 +10,8 @@ class GradeController extends Controller
 {
     public function index()
     {
-        $grades = GradeResource::collection(Grade::all());
-        return view('grade.index', ['grades'=>$grades]);
+        return GradeResource::collection(Grade::all());
+
     }
 
     public function store(GradeRequest $request)
@@ -35,6 +35,6 @@ class GradeController extends Controller
     {
         $grade->delete();
 
-        return response()->json();
+        return response()->noContent();
     }
 }

@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('student_id');
             $table->unsignedBigInteger('assignment_id');
             $table->float('grade_value');
-            $table->timestamp('graded_at')->nullable();
+            $table->date('graded_at')->nullable();
             $table->timestamps();
 
 
