@@ -18,7 +18,7 @@ class QuizTest extends TestCase
         'duration',
         'course' => [
             'id',
-            'title'
+            'title',
         ],
     ];
 
@@ -29,8 +29,8 @@ class QuizTest extends TestCase
         $this->getJson('/api/quiz')->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [
-                    '*' => $this->apiResponceFields
-                ]
+                    '*' => $this->apiResponceFields,
+                ],
             ]);
     }
 
@@ -48,20 +48,20 @@ class QuizTest extends TestCase
     public function testShowQuiz()
     {
         Quiz::factory()->create([
-            'id'=>1
+            'id' => 1,
         ]);
 
         $this->getJson('api/quiz/1')
             ->assertOk()
             ->assertJsonStructure([
-                'data'=>$this->apiResponceFields
+                'data' => $this->apiResponceFields,
             ]);
     }
 
     public function testDeleteQuiz()
     {
         Quiz::factory()->create([
-            'id'=>1
+            'id' => 1,
         ]);
 
         $this->deleteJson('api/quiz/1')
@@ -71,17 +71,17 @@ class QuizTest extends TestCase
     public function testStoreQuiz()
     {
 
-        $quiz=[
-            'title'=>fake()->title(),
-            'description'=>fake()->text(),
-            'duration'=>fake()->numberBetween(1,60),
-            'course_id'=>Course::factory()->create()->id
+        $quiz = [
+            'title' => fake()->title(),
+            'description' => fake()->text(),
+            'duration' => fake()->numberBetween(1, 60),
+            'course_id' => Course::factory()->create()->id,
         ];
-        $this->postJson('api/quiz',$quiz)
+        $this->postJson('api/quiz', $quiz)
             ->assertCreated()
-        ->assertJsonStructure([
-            'data'=>$this->apiResponceFields
-        ]);
+            ->assertJsonStructure([
+                'data' => $this->apiResponceFields,
+            ]);
 
     }
 
@@ -91,24 +91,24 @@ class QuizTest extends TestCase
             ->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY)
             ->assertJsonStructure([
                 'message',
-                'errors'=>[
+                'errors' => [
                     'title',
                     'description',
                     'duration',
-                    'course_id'
-                ]
+                    'course_id',
+                ],
             ]);
     }
 
     public function testUpdateQuiz()
     {
-       $quizzes= Quiz::factory()->create();
+        $quizzes = Quiz::factory()->create();
 
-        $quiz=[
-            'title'=>fake()->title(),
-            'description'=>fake()->text(),
-            'duration'=>fake()->numberBetween(1,60),
-            'course_id'=>Course::factory()->create()->id
+        $quiz = [
+            'title' => fake()->title(),
+            'description' => fake()->text(),
+            'duration' => fake()->numberBetween(1, 60),
+            'course_id' => Course::factory()->create()->id,
         ];
 
         $response = $this->json('PUT', "api/quiz/{$quizzes->id}", $quiz);
@@ -117,6 +117,6 @@ class QuizTest extends TestCase
         $quizzes->refresh();
 
         $this->assertDatabaseHas('quizzes', $quiz);
-        $this->assertEquals($quiz['title'],$quizzes->title);
+        $this->assertEquals($quiz['title'], $quizzes->title);
     }
 }
