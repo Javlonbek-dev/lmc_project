@@ -18,8 +18,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-});
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {});
 Route::apiResource('course', CourseController::class)->names('course')->only('store', 'update', 'destroy');
 Route::apiResource('lesson', LessonController::class)->names('lesson');
 Route::apiResource('assignment', AssignmentController::class)->names('assignment');
